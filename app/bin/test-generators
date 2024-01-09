@@ -12,7 +12,7 @@ pushd ${SCRIPT_DIR}/../
     # Check there is no pending files to be committed.
     if [ -n "$(git status -s .)" ]; then
         echo "There are auto-generated changes not committed."
-        git status -s .
+        git status -s
         exit 1
     fi
 popd
