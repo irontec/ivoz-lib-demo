@@ -1,0 +1,5 @@
+docker/mariadb/data/
+app/var/
+app/vendor/
+
+app/composer.lock

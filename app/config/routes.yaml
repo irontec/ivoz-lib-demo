@@ -1,0 +1,9 @@
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+api_base_path:
+    path: '/'
+
+api_admin_login:
+    path: admin_login

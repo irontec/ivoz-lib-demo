@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Stop on first non-zero exit code
+set -e
+
+if [ `whoami` != 'jenkins' ]; then
+    echo "This test is designed to be executed from Jenkins CI."
+    exit 1
+fi
+
+SCRIPT_DIR=$(dirname $(realpath $0))
+
+pushd ${SCRIPT_DIR}/../
+    # Create database and load initial data
+    bin/console doctrine:database:create -vv
+    mysql -uroot -hdb -pchangeme demo < migrations/initial.sql
+
+    # Apply all migrations
+    bin/console doctrine:migrations:migrate -vv --no-interaction
+
+    # Validate ORM mapping files
+    bin/console doctrine:schema:validate -vv
+
+    # Check no changes are pending to be mapped
+    bin/console doctrine:schema:update -vv --dump-sql | grep 'Nothing to update'
+
+    # Check no changes are generated
+#    bin/console doctrine:migrations:diff --allow-empty-diff -n | grep 'No changes detected'
+popd

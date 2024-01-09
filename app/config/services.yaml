@@ -1,0 +1,74 @@
+imports:
+    - { resource: "@CoreBundle/Resources/config/config.yml" }
+    - { resource: "@CommandlogBundle/Resources/config/services.yml" }
+    - { resource: "@ApiBundle/Resources/config/config.yml" }
+    - { resource: "@ApiBundle/Resources/config/services.yml" }
+    - { resource: "assemblers.yml" }
+
+parameters:
+    secret: '%env(APP_SECRET)%'
+    router.request_context.base_url: /Demo/api
+    api_default_role: ROLE_ADMIN
+    jwt_token_ttl: 3600
+    template_cache_path: '%kernel.cache_dir%/templates/'
+
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\Service\AdministratorProvider:
+        arguments:
+            $entityClass: 'Demo\Domain\Model\Administrator\Administrator'
+
+    Demo\Infrastructure\Api\Jwt\AdministratorTokenAuthenticator: ~
+
+    App\Service\AuthEndpointDecorator:
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        decoration_priority: 1
+        arguments:
+            $decoratedNormalizer:
+                '@App\Service\AuthEndpointDecorator.inner'
+        tags:
+            - { name: serializer.normalizer, priority: 100 }
+
+    Ivoz\Api\Core\Security\DataAccessControlParser:
+        public: true
+
+    #######################################
+    ## App
+    #######################################
+    App\Command\:
+        resource: '../src/App/Command/*/*'
+        tags: [ { name: 'console.command' } ]
+
+    App\Controller\:
+        resource: '../src/App/Controller/*/*'
+        tags: ['controller.service_arguments']
+
+    #######################################
+    ## Application services
+    #######################################
+    Demo\Application\Service\:
+        resource: '../src/Demo/Application/Service/*/*'
+
+    #######################################
+    ## Domain services
+    #######################################
+    Demo\Domain\Service\:
+        resource: '../src/Demo/Domain/Service/*/*'
+        tags: [{ name: 'domain.service'}]
+
+    #######################################
+    ## Infrastructure services
+    #######################################
+    Demo\Infrastructure\Service\:
+        resource: '../src/Demo/Infrastructure/Service/*/*'
+        tags: [ { name: 'domain.service' } ]
+
+    #######################################
+    ## Doctrine Repositories
+    #######################################
+    Demo\Infrastructure\Persistence\Doctrine\:
+        resource: '../src/Demo/Infrastructure/Persistence/Doctrine/*'
+        tags: [{ name: 'domain.repository'}]

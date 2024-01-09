@@ -1,0 +1,12 @@
+.swagger-ui section.models {
+  /*display:none;*/
+}
+
+header #logo img {
+  background-color: white;
+}
+
+pre:not(pre.microlight){
+  display: flex;
+  flex-direction: column;
+}

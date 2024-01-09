@@ -1,0 +1,3 @@
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+  database_host: "127.0.0.1"
