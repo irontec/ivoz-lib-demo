@@ -1,0 +1,33 @@
+parameters:
+    behat.feature_context.admin_repository: 'Demo\Domain\Model\Administrator\AdministratorRepository'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Demo\Stub\:
+        resource: '../src/Demo/Stub/*'
+
+    Doubles\Demo\Domain\Service\:
+        resource: '../src/Doubles/Demo/Domain/Service/*/*'
+        tags: [ { name: 'domain.service' } ]
+
+    Ivoz\Api\Behat\Context\FeatureContext: ~
+
+    App\Service\Behat\FeatureContext:
+        public: true
+        arguments:
+            $kernel: "@kernel"
+
+    #######################################
+    ## Domain services
+    #######################################
+
+
+    #######################################
+    ## Unit tests
+    #######################################
+
+    Symfony\Contracts\HttpClient\HttpClientInterface:
+        public: true

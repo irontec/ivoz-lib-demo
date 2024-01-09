@@ -1,0 +1,13 @@
+#!/bin/bash
+
+pushd /opt/irontec/demo/
+    # Regenerate all gherkin files
+    reformat-gherkin -a right app/features
+
+    # Check there is no pending files to be committed
+    if [ -n "$(git status -s | grep .feature)" ]; then
+        echo "Some gherkin files have incorrect format."
+        git status -s
+        exit 1
+    fi
+popd

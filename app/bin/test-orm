@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+export APP_ENV=test
+
+SCRIPT_DIR=$(dirname $(realpath $0))
+
+pushd ${SCRIPT_DIR}/../
+
+    if [ "$1" != "--skip-db" ]; then
+        # Prepare dataset
+        bin/prepare-test-db
+    fi
+
+    # Run tests
+    vendor/bin/simple-phpunit
+popd

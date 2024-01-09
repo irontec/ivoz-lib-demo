@@ -1,0 +1,41 @@
+imports:
+    - { resource: "orm_target_entities.yml" }
+    - { resource: "orm_soft_delete.yml" }
+doctrine:
+    dbal:
+        url: '%env(resolve:DATABASE_URL)%'
+        schema_filter: "/^(?!version$).*/"
+
+        # IMPORTANT: You MUST configure your server version,
+        # either here or in the DATABASE_URL env var (see .env file)
+        #server_version: '13'
+    orm:
+        mappings:
+            Demo:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Demo/Infrastructure/Persistence/Doctrine/Mapping'
+                prefix: 'Demo\Domain\Model'
+            IvozCore:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/vendor/irontec/ivoz-core/Infrastructure/Persistence/Doctrine/Mapping'
+                prefix: 'Ivoz\Core\Domain\Model'
+
+when@prod:
+    doctrine:
+        orm:
+            auto_generate_proxy_classes: false
+            query_cache_driver:
+                type: pool
+                pool: doctrine.system_cache_pool
+            result_cache_driver:
+                type: pool
+                pool: doctrine.result_cache_pool
+    framework:
+        cache:
+            pools:
+                doctrine.result_cache_pool:
+                    adapter: cache.app
+                doctrine.system_cache_pool:
+                    adapter: cache.system

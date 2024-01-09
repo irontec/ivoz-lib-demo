@@ -1,0 +1,5 @@
+docker/mariadb/data
+app/results
+
+.idea/
+.vscode/

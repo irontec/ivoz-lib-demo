@@ -1,0 +1,59 @@
+version: "3"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: docker/mariadb/Dockerfile
+    entrypoint: docker-entrypoint.sh
+    command: mariadbd
+    container_name: ${NAME}-db
+    restart: 'always'
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    networks:
+      network:
+        ipv4_address: 10.189.4.22
+
+  php-fpm:
+    hostname: ${NAME}-fpm
+    command: /bin/bash /var/run/start.sh
+    container_name: ${NAME}-fpm
+    image: ${NAME}-fpm:local
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+      args:
+        - 'NAME=${NAME}'
+        - 'XDEBUG=${XDEBUG}'
+      extra_hosts:
+        - "packages.irontec.vpn:10.177.88.35"
+    env_file:
+      - .env
+    volumes:
+      - ./app:/opt/symfony
+    ports:
+      - "8003:443"
+    depends_on:
+      - db
+    links:
+      - db
+    networks:
+      network:
+        ipv4_address: 10.189.4.23
+
+networks:
+  network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.189.4.0/24
+
+volumes:
+  dbdata:
+
