@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Stop on first non-zero exit code
+set -e
+
+SCRIPT_DIR=$(dirname $(realpath $0))
+
+pushd ${SCRIPT_DIR}/../
+    # Regenerate all library files
+    APP_ENV=dev  bin/generate-entities.sh
+
+    # Check there is no pending files to be committed
+    if [ -n "$(git status -s)" ]; then
+        echo "There are auto-generated changes not committed."
+        git status -s
+        exit 1
+    fi
+popd

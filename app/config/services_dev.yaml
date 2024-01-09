@@ -1,0 +1,16 @@
+imports:
+    - { resource: "@EntityGeneratorBundle/Resources/config/services.yml" }
+
+monolog:
+    handlers:
+        fingers_crossed_handler:
+            ident: php.onError
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: info
+            buffer_size: 100
+
+        changelog_handler:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: info

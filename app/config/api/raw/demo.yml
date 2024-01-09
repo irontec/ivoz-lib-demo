@@ -1,0 +1,7 @@
+########################################
+## Raw
+########################################
+Demo\Domain\Model\Administrator\Administrator:
+  attributes:
+    order:
+      username: ASC

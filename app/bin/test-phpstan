@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+SCRIPT_DIR=$(dirname $(realpath $0))
+
+pushd ${SCRIPT_DIR}/../
+    vendor/bin/phpstan analyse \
+        --level max \
+        --ansi \
+        --no-progress \
+        --autoload-file vendor/autoload.php \
+        --configuration phpstan.neon \
+        src $1
+popd
+

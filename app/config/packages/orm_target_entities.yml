@@ -1,0 +1,9 @@
+doctrine:
+  orm:
+    resolve_target_entities:
+      Demo\Domain\Model\Administrator\AdministratorInterface:
+        Demo\Domain\Model\Administrator\Administrator
+      Ivoz\Core\Domain\Model\Commandlog\CommandlogInterface:
+        Ivoz\Core\Domain\Model\Commandlog\Commandlog
+      Ivoz\Core\Domain\Model\Changelog\ChangelogInterface:
+        Ivoz\Core\Domain\Model\Changelog\Changelog
