@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <mapped-superclass name="Demo\Domain\Model\Platform\PlatformAbstract">
+    <field name="name" type="string" column="name" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="apiUrl" type="string" column="apiUrl" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="refresh_token" type="string" column="refresh_token" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+        <option name="default">NULL</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="tlsPort" type="integer" column="tlsPort" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="type" type="string" column="type" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">[enum:isbc|other|ivozprovider-v2|ivozprovider-v3]</option>
+        <option name="default">isbc</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="tcpPort" type="integer" column="tcpPort" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="fixed"/>
+        <option name="default">5060</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="udpPort" type="integer" column="udpPort" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="fixed"/>
+        <option name="default">5060</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="wssPort" type="integer" column="wssPort" nullable="false">
+      <options>
+        <option name="unsigned">1</option>
+        <option name="fixed"/>
+        <option name="default">10081</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <unique-constraints>
+      <unique-constraint name="platform_name" columns="name"/>
+    </unique-constraints>
+  </mapped-superclass>
+</doctrine-mapping>

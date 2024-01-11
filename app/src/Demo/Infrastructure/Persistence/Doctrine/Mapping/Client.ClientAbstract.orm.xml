@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <mapped-superclass name="Demo\Domain\Model\Client\ClientAbstract">
+    <field name="iden" type="string" column="iden" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="domain" type="string" column="domain" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="desktopLicenses" type="integer" column="desktopLicenses" nullable="false"/>
+    <unique-constraints/>
+    <field name="provisioningTemplateId" type="integer" column="provisioningTemplateId" nullable="false"/>
+    <unique-constraints/>
+    <field name="platformId" type="integer" column="platformId" nullable="false"/>
+    <unique-constraints/>
+    <field name="remoteId" type="integer" column="remoteId" nullable="true">
+    </field>
+    <unique-constraints/>
+    <field name="emailTemplateId" type="integer" column="emailTemplateId" nullable="false"/>
+    <field name="mobileLicences" type="integer" column="mobileLicences" nullable="false"/>
+    <unique-constraints/>
+    <field name="authType" type="string" column="authType" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">[enum:password|ldap|azureAd]</option>
+        <option name="default">password</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="ldapServer" type="string" column="ldapServer" length="128" nullable="true">
+      <options>
+        <option name="fixed"/>      
+      </options>
+    </field>
+    <field name="ldapQuery" type="string" column="ldapQuery" length="256" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="description" type="string" column="description" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="proxyHost" type="string" column="proxyHost" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>            
+      </options>
+    </field>
+    <field name="proxyPort" type="integer" column="proxyPort" nullable="true"/>
+    <unique-constraints/>
+    <field name="sdes" type="string" column="sdes" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">[enum:required|disabled]</option>
+        <option name="default">required</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="transport" type="string" column="transport" length="64" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="comment">[enum:udp|tcp|tls+sip:]</option>
+        <option name="default">tls+sip:</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="cardDav" type="smallint" column="cardDav" nullable="false"/>
+    <unique-constraints/>
+    <field name="cardDavPass" type="string" column="cardDavPass" length="255" nullable="true">
+      <options>
+        <option name="fixed"/>        
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="customTabUrl" type="string" column="customTabUrl" length="512" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="voiceMailNumber" type="string" column="voiceMailNumber" length="8" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">*93</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="customTabTitle" type="string" column="customTabTitle" length="32" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="dualLicences" type="integer" column="dualLicences" nullable="false"/>
+    <unique-constraints/>
+    <field name="displayDnd" type="smallint" column="displayDnd" nullable="false">
+      <options>
+        <option name="default">1</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="activationDate" type="date" column="activationDate" nullable="false"/>
+    <field name="intRef" type="string" column="intRef" length="16" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">''</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="intRefUrl" type="string" column="intRefUrl" length="512" nullable="false">
+      <options>
+        <option name="fixed"/>
+        <option name="default">''</option>
+      </options>
+    </field>
+    <unique-constraints/>
+    <field name="lastSuccessfulSync" type="datetime" column="lastSuccessfulSync" nullable="true">
+    </field>
+    <unique-constraints/>
+    <unique-constraints>
+      <unique-constraint name="client_iden" columns="iden"/>
+    </unique-constraints>
+  </mapped-superclass>
+</doctrine-mapping>
