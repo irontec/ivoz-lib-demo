@@ -2,15 +2,15 @@
 
 namespace Demo\Domain\Model\Platform;
 
+use Ivoz\Core\Domain\Model\LoggableEntityInterface;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Domain\DataTransferObjectInterface;
 use Ivoz\Core\Domain\ForeignKeyTransformerInterface;
-use Ivoz\Core\Domain\Model\LoggableEntityInterface;
 
 /**
 * PlatformInterface
 */
-interface PlatformInterface extends EntityInterface, LoggableEntityInterface
+interface PlatformInterface extends LoggableEntityInterface
 {
     public const TYPE_ISBC = 'isbc';
 
@@ -30,7 +30,7 @@ interface PlatformInterface extends EntityInterface, LoggableEntityInterface
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): string|int;
+    public function getId(): null|int;
 
     /**
      * @param int | null $id

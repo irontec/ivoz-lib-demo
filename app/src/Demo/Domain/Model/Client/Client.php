@@ -2,6 +2,8 @@
 
 namespace Demo\Domain\Model\Client;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
 /**
  * Client
  */
@@ -10,19 +12,10 @@ class Client extends ClientAbstract implements ClientInterface
     use ClientTrait;
 
     /**
-     * @codeCoverageIgnore
-     * @return array<string, mixed>
-     */
-    public function getChangeSet(): array
-    {
-        return parent::getChangeSet();
-    }
-
-    /**
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): int|string
+    public function getId(): null|int
     {
         return $this->id;
     }

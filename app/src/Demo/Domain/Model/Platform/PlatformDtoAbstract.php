@@ -26,7 +26,7 @@ abstract class PlatformDtoAbstract implements DataTransferObjectInterface
     /**
      * @var string|null
      */
-    private $refresh_token = null;
+    private $refreshToken = null;
 
     /**
      * @var int|null
@@ -75,7 +75,7 @@ abstract class PlatformDtoAbstract implements DataTransferObjectInterface
         return [
             'name' => 'name',
             'apiUrl' => 'apiUrl',
-            'refresh_token' => 'refresh_token',
+            'refreshToken' => 'refreshToken',
             'tlsPort' => 'tlsPort',
             'type' => 'type',
             'tcpPort' => 'tcpPort',
@@ -93,7 +93,7 @@ abstract class PlatformDtoAbstract implements DataTransferObjectInterface
         $response = [
             'name' => $this->getName(),
             'apiUrl' => $this->getApiUrl(),
-            'refresh_token' => $this->getRefreshToken(),
+            'refreshToken' => $this->getRefreshToken(),
             'tlsPort' => $this->getTlsPort(),
             'type' => $this->getType(),
             'tcpPort' => $this->getTcpPort(),
@@ -140,16 +140,16 @@ abstract class PlatformDtoAbstract implements DataTransferObjectInterface
         return $this->apiUrl;
     }
 
-    public function setRefreshToken(?string $refresh_token): static
+    public function setRefreshToken(?string $refreshToken): static
     {
-        $this->refresh_token = $refresh_token;
+        $this->refreshToken = $refreshToken;
 
         return $this;
     }
 
     public function getRefreshToken(): ?string
     {
-        return $this->refresh_token;
+        return $this->refreshToken;
     }
 
     public function setTlsPort(int $tlsPort): static

@@ -13,7 +13,7 @@
       </options>
     </field>
     <unique-constraints/>
-    <field name="refresh_token" type="string" column="refresh_token" length="255" nullable="true">
+    <field name="refreshToken" type="string" column="refresh_token" length="255" nullable="true">
       <options>
         <option name="fixed"/>
         <option name="default">NULL</option>

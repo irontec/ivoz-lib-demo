@@ -5,12 +5,11 @@ namespace Demo\Domain\Model\Client;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Domain\DataTransferObjectInterface;
 use Ivoz\Core\Domain\ForeignKeyTransformerInterface;
-use Ivoz\Core\Domain\Model\LoggableEntityInterface;
 
 /**
 * ClientInterface
 */
-interface ClientInterface extends EntityInterface, LoggableEntityInterface
+interface ClientInterface extends EntityInterface
 {
     public const AUTHTYPE_PASSWORD = 'password';
 
@@ -29,16 +28,10 @@ interface ClientInterface extends EntityInterface, LoggableEntityInterface
     public const TRANSPORT_TLSSIP = 'tls+sip:';
 
     /**
-     * @codeCoverageIgnore
-     * @return array<string, mixed>
-     */
-    public function getChangeSet(): array;
-
-    /**
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): string|int;
+    public function getId(): null|int;
 
     /**
      * @param int | null $id

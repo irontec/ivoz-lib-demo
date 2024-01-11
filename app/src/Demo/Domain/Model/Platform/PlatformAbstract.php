@@ -30,8 +30,9 @@ abstract class PlatformAbstract
 
     /**
      * @var ?string
+     * column: refresh_token
      */
-    protected $refresh_token = null;
+    protected $refreshToken = null;
 
     /**
      * @var int
@@ -78,7 +79,7 @@ abstract class PlatformAbstract
         $this->setWssPort($wssPort);
     }
 
-    abstract public function getId(): null|string|int;
+    abstract public function getId(): null|int;
 
     public function __toString(): string
     {
@@ -269,20 +270,20 @@ abstract class PlatformAbstract
         return $this->apiUrl;
     }
 
-    protected function setRefreshToken(?string $refresh_token = null): static
+    protected function setRefreshToken(?string $refreshToken = null): static
     {
-        if (!is_null($refresh_token)) {
-            Assertion::maxLength($refresh_token, 255, 'refresh_token value "%s" is too long, it should have no more than %d characters, but has %d characters.');
+        if (!is_null($refreshToken)) {
+            Assertion::maxLength($refreshToken, 255, 'refreshToken value "%s" is too long, it should have no more than %d characters, but has %d characters.');
         }
 
-        $this->refresh_token = $refresh_token;
+        $this->refreshToken = $refreshToken;
 
         return $this;
     }
 
     public function getRefreshToken(): ?string
     {
-        return $this->refresh_token;
+        return $this->refreshToken;
     }
 
     protected function setTlsPort(int $tlsPort): static

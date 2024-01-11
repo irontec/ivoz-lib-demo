@@ -5,3 +5,14 @@ Demo\Domain\Model\Administrator\Administrator:
   attributes:
     order:
       username: ASC
+
+Demo\Domain\Model\Platform\Platform: ~
+
+Demo\Domain\Model\Client\Client:
+  itemOperations:
+    # get: ~
+    # put: ~
+    delete: ~
+  collectionOperations:
+    post: ~
+    get: ~

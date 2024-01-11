@@ -22,7 +22,7 @@ class Platform extends PlatformAbstract implements PlatformInterface
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): int|string
+    public function getId(): null|int
     {
         return $this->id;
     }
