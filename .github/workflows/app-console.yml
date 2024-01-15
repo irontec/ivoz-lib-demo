@@ -18,7 +18,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install dependencies
-      uses: cd app/ php-actions/composer@v6
+      uses: cd app/ && php-actions/composer@v6
 
     - name: Validate app-console
       run: cd app/ && bin/console
