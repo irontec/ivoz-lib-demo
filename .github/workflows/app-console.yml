@@ -17,11 +17,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install dependencies
-      
+    - name: Install dependencies      
       uses: php-actions/composer@v6 
       working_dir: app/
-
+          
     - name: Validate app-console
       run: bin/console
       working-directory: app/
