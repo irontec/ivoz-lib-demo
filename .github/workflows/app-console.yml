@@ -21,8 +21,31 @@ jobs:
       uses: php-actions/composer@v6 
       with:
         working_dir: app/
-          
+
+    # Validate app console
     - name: Validate app-console
       run: bin/console
       working-directory: app/
+
+    # Code style
+    - name: Check code style
+      run: bin/test-codestyle
+      working-directory: app/
+
+    # Generators
+    - name: Check generators
+      run: bin/test-generators
+      working-directory: app/
+
+    # PHP Stan
+    - name: PHP Stan
+      run: bin/test-phpstan
+      working-directory: app/
+
+    # Schema
+    - name: PHP Schema
+      run: bin/test-schema
+      working-directory: app/
+      
+      
 
