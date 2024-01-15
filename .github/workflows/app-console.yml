@@ -19,7 +19,8 @@ jobs:
 
     - name: Install dependencies      
       uses: php-actions/composer@v6 
-        - working_dir: app/
+      with:
+        working_dir: app/
           
     - name: Validate app-console
       run: bin/console
