@@ -30,4 +30,16 @@ class ClientDoctrineRepository extends DoctrineRepository implements ClientRepos
             $entityPersisterInterface
         );
     }
+
+    public function findByPlatformId(int $id): ?ClientInterface
+    {
+        $iden = Client::DEFAULT_PLATFORM_CLIENT_PREFIX . $id;
+
+        return $this->findOneBy(
+            [
+                'iden' => $iden,
+                'platformId' => $id
+            ]
+        );
+    }
 }

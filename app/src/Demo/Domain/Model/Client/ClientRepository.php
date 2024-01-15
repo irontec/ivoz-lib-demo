@@ -2,15 +2,14 @@
 
 namespace Demo\Domain\Model\Client;
 
-use Demo\Domain\Model\Platform\Platform;
-use Doctrine\Common\Collections\Selectable;
-use Doctrine\Persistence\ObjectRepository;
+use Demo\Domain\Model\Client\ClientDto;
+use Demo\Domain\Model\Client\ClientInterface;
 use Ivoz\Core\Domain\Service\Repository\RepositoryInterface;
 
 /**
- * @extends Selectable<int,Client>
- * @extends ObjectRepository<Client>
+ * extends RepositoryInterface<ClientInterface, ClientDto>
  */
-interface ClientRepository extends Selectable, ObjectRepository
+interface ClientRepository extends RepositoryInterface
 {
+    public function findByPlatformId(int $id) : ?ClientInterface;
 }

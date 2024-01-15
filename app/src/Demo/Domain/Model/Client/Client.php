@@ -11,6 +11,8 @@ class Client extends ClientAbstract implements ClientInterface
 {
     use ClientTrait;
 
+    public const DEFAULT_PLATFORM_CLIENT_PREFIX = 'platformUser';
+
     /**
      * Get id
      * @codeCoverageIgnore

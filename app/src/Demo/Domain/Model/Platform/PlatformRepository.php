@@ -2,12 +2,13 @@
 
 namespace Demo\Domain\Model\Platform;
 
-use Doctrine\Common\Collections\Selectable;
-use Doctrine\Persistence\ObjectRepository;
+use Demo\Domain\Model\Platform\PlatformDto;
+use Demo\Domain\Model\Platform\PlatformInterface;
+use Ivoz\Core\Domain\Service\Repository\RepositoryInterface;
 
 /**
- * @extends Selectable<int,Platform>
- * @extends ObjectRepository<Platform>
+ * extends RepositoryInterface<PlatformInterface, PlatformDto>
  */
-interface PlatformRepository extends Selectable, ObjectRepository {
+interface PlatformRepository extends RepositoryInterface
+{
 }

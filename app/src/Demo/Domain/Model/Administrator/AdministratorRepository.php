@@ -2,14 +2,14 @@
 
 namespace Demo\Domain\Model\Administrator;
 
-use Doctrine\Common\Collections\Selectable;
-use Doctrine\Persistence\ObjectRepository;
+use Demo\Domain\Model\Administrator\AdministratorDto;
+use Demo\Domain\Model\Administrator\AdministratorInterface;
+use Ivoz\Core\Domain\Service\Repository\RepositoryInterface;
 
 /**
- * @extends Selectable<int,Administrator>
- * @extends ObjectRepository<Administrator>
+ * @extends RepositoryInterface<AdministratorInterface, AdministratorDto>
  */
-interface AdministratorRepository extends ObjectRepository, Selectable
+interface AdministratorRepository extends RepositoryInterface
 {
     public function findByUsername(string $username): ?AdministratorInterface;
 }

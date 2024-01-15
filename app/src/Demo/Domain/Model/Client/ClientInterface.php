@@ -27,6 +27,7 @@ interface ClientInterface extends EntityInterface
 
     public const TRANSPORT_TLSSIP = 'tls+sip:';
 
+
     /**
      * Get id
      * @codeCoverageIgnore
