@@ -17,14 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json
-      run: cd app/ && composer validate
-
     - name: Install dependencies
       uses: php-actions/composer@v6
-
-    - name: Install dependencies
-      run: cd app/ && composer install --prefer-dist --no-progress
 
     - name: Validate app-console
       run: cd app/ && bin/console
