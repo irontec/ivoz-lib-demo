@@ -16,6 +16,8 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: runchecks
 
     - name: Install dependencies      
       uses: php-actions/composer@v6 
