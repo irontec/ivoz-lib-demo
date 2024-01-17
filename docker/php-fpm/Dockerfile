@@ -38,7 +38,8 @@ RUN apt-get update && apt-get install --assume-yes --force-yes \
         vim \
         iproute2 \
         apache2 \
-        postfix
+        postfix \
+        default-mysql-client \
 
 RUN apt-get clean
 

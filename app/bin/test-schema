@@ -3,11 +3,6 @@
 # Stop on first non-zero exit code
 set -e
 
-if [ `whoami` != 'jenkins' ]; then
-    echo "This test is designed to be executed from Jenkins CI."
-    exit 1
-fi
-
 SCRIPT_DIR=$(dirname $(realpath $0))
 
 pushd ${SCRIPT_DIR}/../
