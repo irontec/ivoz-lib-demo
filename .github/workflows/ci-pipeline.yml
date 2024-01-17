@@ -1,0 +1,75 @@
+name: Test app console
+
+on: 
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+env:
+  MYSQL_ROOT_PASSWORD: changeme
+  MYSQL_DATABASE: demo
+  MYSQL_USER: regular
+  MYSQL_PASSWORD: changeme
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ env.MYSQL_PASSWORD }}
+        ports:
+          - 3306:3306
+
+    steps:
+    - name: Add hosts to /etc/hosts
+      run: |
+        sudo echo "127.0.0.1 db" | sudo tee -a /etc/hosts
+
+    - uses: actions/checkout@v2
+
+    - uses: actions/cache@v3
+      id: vendor-cache
+      with:
+        key: vendor-${{ hashFiles('app/composer.lock') }}
+        path: app/vendor
+
+    - name: Install dependencies
+      uses: php-actions/composer@v6 
+      with:
+        working_dir: app/
+
+    # Validate app console
+    - name: Validate app-console
+      run: bin/console
+      working-directory: app/
+
+    # Code style
+    - name: Check code style
+      run: bin/test-codestyle
+      working-directory: app/
+
+    # Generators
+    - name: Check generators
+      run: bin/test-generators
+      working-directory: app/
+
+    # PHP Stan
+    - name: PHP Stan
+      run: bin/test-phpstan
+      working-directory: app/
+
+    # Schema
+    - name: PHP Schema
+      run: bin/test-schema
+      working-directory: app/
+      
+      
+
