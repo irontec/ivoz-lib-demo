@@ -11,11 +11,6 @@ use Ivoz\Api\Behat\Context\FeatureContext as IvozApiFeatureContext;
 class FeatureContext extends IvozApiFeatureContext
 {
     /**
-     * @var string
-     */
-    protected $templateCachePath;
-
-    /**
      * Initializes context.
      *
      * Every scenario gets its own context instance.
@@ -25,22 +20,7 @@ class FeatureContext extends IvozApiFeatureContext
     public function __construct(
         KernelInterface $kernel
     ) {
-        $container = $kernel->getContainer();
-        $this->templateCachePath = (string) $container->getParameter('template_cache_path');
-
         parent::__construct($kernel);
-    }
-
-    /**
-     * @BeforeScenario @cleanCompiledTemplatePath
-     */
-    public function cleanCompiledTemplatePath(): void
-    {
-        if ($this->fs->exists($this->templateCachePath)) {
-            $this->fs->remove(
-                $this->templateCachePath
-            );
-        }
     }
 
     /**
