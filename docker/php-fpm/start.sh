@@ -15,10 +15,10 @@ service apache2 start
 #####################
 ## project dependencies
 #####################
-composer install
+sudo -u docker composer install
 
 if [ ! -f /opt/symfony/config/jwt/certificate/private.pem ]; then
-  bin/console lexik:jwt:generate-keypair
+  sudo -u docker bin/console lexik:jwt:generate-keypair
 fi
 
 #####################
