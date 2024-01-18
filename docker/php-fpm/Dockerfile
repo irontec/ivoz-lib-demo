@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install --assume-yes --force-yes \
         iproute2 \
         apache2 \
         postfix \
-        default-mysql-client \
+        default-mysql-client
 
 RUN apt-get clean
 
