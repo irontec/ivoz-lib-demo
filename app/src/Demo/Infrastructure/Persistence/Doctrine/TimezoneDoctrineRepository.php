@@ -5,7 +5,6 @@ namespace Demo\Infrastructure\Persistence\Doctrine;
 use Doctrine\Persistence\ManagerRegistry;
 use Ivoz\Core\Domain\Service\EntityPersisterInterface;
 use Ivoz\Core\Infrastructure\Persistence\Doctrine\Repository\DoctrineRepository;
-use Demo\Domain\Model\Timezone\Timezone;
 use Demo\Domain\Model\Timezone\TimezoneRepository;
 use Demo\Domain\Model\Timezone\TimezoneInterface;
 use Demo\Domain\Model\Timezone\TimezoneDto;
@@ -26,7 +25,7 @@ class TimezoneDoctrineRepository extends DoctrineRepository implements TimezoneR
     ) {
         parent::__construct(
             $registry,
-            Timezone::class,
+            TimezoneRepository::class,
             $entityPersisterInterface
         );
     }

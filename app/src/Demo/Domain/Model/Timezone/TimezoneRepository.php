@@ -7,6 +7,6 @@ use Ivoz\Core\Domain\Service\Repository\RepositoryInterface;
 /**
  * @extends RepositoryInterface<TimezoneInterface, TimezoneDto>
  */
-interface Timezone extends RepositoryInterface
+interface TimezoneRepository extends RepositoryInterface
 {
 }

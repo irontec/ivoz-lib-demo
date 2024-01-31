@@ -10,7 +10,7 @@ use Ivoz\Core\Domain\Model\ChangelogTrait;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Domain\ForeignKeyTransformerInterface;
 use Demo\Domain\Model\Timezone\TimezoneInterfaceInterface;
-use Demo\Domain\Model\Timezone\Timezone;
+use Demo\Domain\Model\Timezone\TimezoneRepository;
 
 /**
 * AdministratorAbstract
@@ -181,7 +181,7 @@ abstract class AdministratorAbstract
             ->setEmail(self::getEmail())
             ->setName(self::getName())
             ->setLastname(self::getLastname())
-            ->setTimezoneId(Timezone::entityToDto(self::getTimezoneId(), $depth));
+            ->setTimezoneId(TimezoneRepository::entityToDto(self::getTimezoneId(), $depth));
     }
 
     /**
