@@ -9,6 +9,8 @@ use Ivoz\Core\Domain\DataTransferObjectInterface;
 use Ivoz\Core\Domain\Model\ChangelogTrait;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Domain\ForeignKeyTransformerInterface;
+use Demo\Domain\Model\Timezone\TimezoneInterfaceInterface;
+use Demo\Domain\Model\Timezone\Timezone;
 
 /**
 * AdministratorAbstract
@@ -43,6 +45,11 @@ abstract class AdministratorAbstract
      * @var ?string
      */
     protected $lastname = null;
+
+    /**
+     * @var ?TimezoneInterfaceInterface
+     */
+    protected $timezoneId = null;
 
     /**
      * Constructor
@@ -129,7 +136,8 @@ abstract class AdministratorAbstract
         $self
             ->setEmail($dto->getEmail())
             ->setName($dto->getName())
-            ->setLastname($dto->getLastname());
+            ->setLastname($dto->getLastname())
+            ->setTimezoneId($fkTransformer->transform($dto->getTimezoneId()));
 
         $self->initChangelog();
 
@@ -156,7 +164,8 @@ abstract class AdministratorAbstract
             ->setPass($pass)
             ->setEmail($dto->getEmail())
             ->setName($dto->getName())
-            ->setLastname($dto->getLastname());
+            ->setLastname($dto->getLastname())
+            ->setTimezoneId($fkTransformer->transform($dto->getTimezoneId()));
 
         return $this;
     }
@@ -171,7 +180,8 @@ abstract class AdministratorAbstract
             ->setPass(self::getPass())
             ->setEmail(self::getEmail())
             ->setName(self::getName())
-            ->setLastname(self::getLastname());
+            ->setLastname(self::getLastname())
+            ->setTimezoneId(Timezone::entityToDto(self::getTimezoneId(), $depth));
     }
 
     /**
@@ -184,7 +194,8 @@ abstract class AdministratorAbstract
             'pass' => self::getPass(),
             'email' => self::getEmail(),
             'name' => self::getName(),
-            'lastname' => self::getLastname()
+            'lastname' => self::getLastname(),
+            'timezoneIdId' => self::getTimezoneId()?->getId()
         ];
     }
 
@@ -262,5 +273,17 @@ abstract class AdministratorAbstract
     public function getLastname(): ?string
     {
         return $this->lastname;
+    }
+
+    protected function setTimezoneId(?TimezoneInterfaceInterface $timezoneId = null): static
+    {
+        $this->timezoneId = $timezoneId;
+
+        return $this;
+    }
+
+    public function getTimezoneId(): ?TimezoneInterfaceInterface
+    {
+        return $this->timezoneId;
     }
 }
