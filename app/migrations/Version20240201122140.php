@@ -14,7 +14,7 @@ final class Version20240201122140 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'Add Timezone table';
     }
 
     public function up(Schema $schema): void
