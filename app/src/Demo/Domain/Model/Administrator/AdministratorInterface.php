@@ -6,6 +6,7 @@ use Ivoz\Core\Domain\Model\LoggableEntityInterface;
 use Ivoz\Core\Domain\Model\EntityInterface;
 use Ivoz\Core\Domain\DataTransferObjectInterface;
 use Ivoz\Core\Domain\ForeignKeyTransformerInterface;
+use Demo\Domain\Model\Timezone\TimezoneInterface;
 
 /**
 * AdministratorInterface
@@ -75,4 +76,6 @@ interface AdministratorInterface extends LoggableEntityInterface
     public function getName(): ?string;
 
     public function getLastname(): ?string;
+
+    public function getTimezone(): ?TimezoneInterface;
 }
