@@ -22,7 +22,7 @@ interface TimezoneInterface extends LoggableEntityInterface
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): string|int;
+    public function getId(): ?int;
 
     /**
      * @param int | null $id

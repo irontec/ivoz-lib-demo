@@ -22,7 +22,7 @@ class Timezone extends TimezoneAbstract implements TimezoneInterface
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): int|string
+    public function getId(): null|int
     {
         return $this->id;
     }
