@@ -15,7 +15,7 @@
         <option name="comment">[password]</option>
       </options>
     </field>
-    <field name="email" type="string" column="email" length="100" nullable="true">
+    <field name="email" type="string" column="email" length="100" nullable="false">
       <options>
         <option name="fixed"/>
       </options>
@@ -35,5 +35,10 @@
         <join-column name="timezoneId" referenced-column-name="id" on-delete="SET NULL" nullable="1"/>
       </join-columns>
     </many-to-one>
+    <field name="active" type="smallint" column="active" nullable="false">
+      <options>
+        <option name="default">0</option>
+      </options>
+    </field>
   </mapped-superclass>
 </doctrine-mapping>
