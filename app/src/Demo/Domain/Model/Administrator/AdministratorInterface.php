@@ -71,11 +71,13 @@ interface AdministratorInterface extends LoggableEntityInterface
 
     public function getPass(): string;
 
-    public function getEmail(): ?string;
+    public function getEmail(): string;
 
     public function getName(): ?string;
 
     public function getLastname(): ?string;
+
+    public function getActive(): int;
 
     public function getTimezone(): ?TimezoneInterface;
 }

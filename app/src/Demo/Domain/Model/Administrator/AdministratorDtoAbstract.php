@@ -42,6 +42,11 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     /**
      * @var int|null
      */
+    private $active = 0;
+
+    /**
+     * @var int|null
+     */
     private $id = null;
 
     /**
@@ -69,6 +74,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
             'email' => 'email',
             'name' => 'name',
             'lastname' => 'lastname',
+            'active' => 'active',
             'id' => 'id',
             'timezoneId' => 'timezone'
         ];
@@ -85,6 +91,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
             'email' => $this->getEmail(),
             'name' => $this->getName(),
             'lastname' => $this->getLastname(),
+            'active' => $this->getActive(),
             'id' => $this->getId(),
             'timezone' => $this->getTimezone()
         ];
@@ -127,7 +134,7 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
         return $this->pass;
     }
 
-    public function setEmail(?string $email): static
+    public function setEmail(string $email): static
     {
         $this->email = $email;
 
@@ -161,6 +168,18 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     public function getLastname(): ?string
     {
         return $this->lastname;
+    }
+
+    public function setActive(int $active): static
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getActive(): ?int
+    {
+        return $this->active;
     }
 
     /**
