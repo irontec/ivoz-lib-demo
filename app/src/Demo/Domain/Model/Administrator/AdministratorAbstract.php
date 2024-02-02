@@ -32,9 +32,9 @@ abstract class AdministratorAbstract
     protected $pass;
 
     /**
-     * @var ?string
+     * @var string
      */
-    protected $email = null;
+    protected $email;
 
     /**
      * @var ?string
@@ -47,6 +47,11 @@ abstract class AdministratorAbstract
     protected $lastname = null;
 
     /**
+     * @var int
+     */
+    protected $active = 0;
+
+    /**
      * @var ?TimezoneInterface
      */
     protected $timezone = null;
@@ -56,10 +61,14 @@ abstract class AdministratorAbstract
      */
     protected function __construct(
         string $username,
-        string $pass
+        string $pass,
+        string $email,
+        int $active
     ) {
         $this->setUsername($username);
         $this->setPass($pass);
+        $this->setEmail($email);
+        $this->setActive($active);
     }
 
     abstract public function getId(): null|string|int;
@@ -127,14 +136,19 @@ abstract class AdministratorAbstract
         Assertion::notNull($username, 'getUsername value is null, but non null value was expected.');
         $pass = $dto->getPass();
         Assertion::notNull($pass, 'getPass value is null, but non null value was expected.');
+        $email = $dto->getEmail();
+        Assertion::notNull($email, 'getEmail value is null, but non null value was expected.');
+        $active = $dto->getActive();
+        Assertion::notNull($active, 'getActive value is null, but non null value was expected.');
 
         $self = new static(
             $username,
-            $pass
+            $pass,
+            $email,
+            $active
         );
 
         $self
-            ->setEmail($dto->getEmail())
             ->setName($dto->getName())
             ->setLastname($dto->getLastname())
             ->setTimezone($fkTransformer->transform($dto->getTimezone()));
@@ -158,13 +172,18 @@ abstract class AdministratorAbstract
         Assertion::notNull($username, 'getUsername value is null, but non null value was expected.');
         $pass = $dto->getPass();
         Assertion::notNull($pass, 'getPass value is null, but non null value was expected.');
+        $email = $dto->getEmail();
+        Assertion::notNull($email, 'getEmail value is null, but non null value was expected.');
+        $active = $dto->getActive();
+        Assertion::notNull($active, 'getActive value is null, but non null value was expected.');
 
         $this
             ->setUsername($username)
             ->setPass($pass)
-            ->setEmail($dto->getEmail())
+            ->setEmail($email)
             ->setName($dto->getName())
             ->setLastname($dto->getLastname())
+            ->setActive($active)
             ->setTimezone($fkTransformer->transform($dto->getTimezone()));
 
         return $this;
@@ -181,6 +200,7 @@ abstract class AdministratorAbstract
             ->setEmail(self::getEmail())
             ->setName(self::getName())
             ->setLastname(self::getLastname())
+            ->setActive(self::getActive())
             ->setTimezone(Timezone::entityToDto(self::getTimezone(), $depth));
     }
 
@@ -195,6 +215,7 @@ abstract class AdministratorAbstract
             'email' => self::getEmail(),
             'name' => self::getName(),
             'lastname' => self::getLastname(),
+            'active' => self::getActive(),
             'timezoneId' => self::getTimezone()?->getId()
         ];
     }
@@ -227,18 +248,16 @@ abstract class AdministratorAbstract
         return $this->pass;
     }
 
-    protected function setEmail(?string $email = null): static
+    protected function setEmail(string $email): static
     {
-        if (!is_null($email)) {
-            Assertion::maxLength($email, 100, 'email value "%s" is too long, it should have no more than %d characters, but has %d characters.');
-        }
+        Assertion::maxLength($email, 100, 'email value "%s" is too long, it should have no more than %d characters, but has %d characters.');
 
         $this->email = $email;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -273,6 +292,18 @@ abstract class AdministratorAbstract
     public function getLastname(): ?string
     {
         return $this->lastname;
+    }
+
+    protected function setActive(int $active): static
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getActive(): int
+    {
+        return $this->active;
     }
 
     protected function setTimezone(?TimezoneInterface $timezone = null): static
