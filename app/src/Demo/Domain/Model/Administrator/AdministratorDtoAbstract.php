@@ -4,6 +4,7 @@ namespace Demo\Domain\Model\Administrator;
 
 use Ivoz\Core\Domain\DataTransferObjectInterface;
 use Ivoz\Core\Domain\Model\DtoNormalizer;
+use Demo\Domain\Model\Timezone\TimezoneDto;
 
 /**
 * AdministratorDtoAbstract
@@ -43,6 +44,11 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
      */
     private $id = null;
 
+    /**
+     * @var TimezoneDto | null
+     */
+    private $timezone = null;
+
     public function __construct(?int $id = null)
     {
         $this->setId($id);
@@ -63,7 +69,8 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
             'email' => 'email',
             'name' => 'name',
             'lastname' => 'lastname',
-            'id' => 'id'
+            'id' => 'id',
+            'timezoneId' => 'timezone'
         ];
     }
 
@@ -78,7 +85,8 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
             'email' => $this->getEmail(),
             'name' => $this->getName(),
             'lastname' => $this->getLastname(),
-            'id' => $this->getId()
+            'id' => $this->getId(),
+            'timezone' => $this->getTimezone()
         ];
 
         if (!$hideSensitiveData) {
@@ -168,5 +176,35 @@ abstract class AdministratorDtoAbstract implements DataTransferObjectInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setTimezone(?TimezoneDto $timezone): static
+    {
+        $this->timezone = $timezone;
+
+        return $this;
+    }
+
+    public function getTimezone(): ?TimezoneDto
+    {
+        return $this->timezone;
+    }
+
+    public function setTimezoneId(?int $id): static
+    {
+        $value = !is_null($id)
+            ? new TimezoneDto($id)
+            : null;
+
+        return $this->setTimezone($value);
+    }
+
+    public function getTimezoneId(): ?int
+    {
+        if ($dto = $this->getTimezone()) {
+            return $dto->getId();
+        }
+
+        return null;
     }
 }
