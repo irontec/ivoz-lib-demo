@@ -19,6 +19,11 @@ class AdministratorDto extends AdministratorDtoAbstract
             ];
         }
 
-        return parent::getPropertyMap($context, $role);
+        $response = parent::getPropertyMap($context, $role);
+
+        // active field is hidden in every context
+        unset($response['active']);
+
+        return $response;
     }
 }
