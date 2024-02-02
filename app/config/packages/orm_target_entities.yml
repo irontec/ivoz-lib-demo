@@ -7,3 +7,5 @@ doctrine:
         Ivoz\Core\Domain\Model\Commandlog\Commandlog
       Ivoz\Core\Domain\Model\Changelog\ChangelogInterface:
         Ivoz\Core\Domain\Model\Changelog\Changelog
+      Demo\Domain\Model\Timezone\TimezoneInterface:
+        Demo\Domain\Model\Timezone\Timezone
