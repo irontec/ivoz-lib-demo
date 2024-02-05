@@ -3,5 +3,14 @@
 ########################################
 Demo\Domain\Model\Administrator\Administrator:
   attributes:
+    access_control: '"ROLE_ADMIN" in roles'
     order:
       username: ASC
+    write_access_control:
+      ROLE_ADMIN:
+        id:
+          neq: 1
+    delete_access_control:
+      ROLE_ADMIN:
+        id:
+          neq: 1
