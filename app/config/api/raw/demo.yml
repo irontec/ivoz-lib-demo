@@ -2,6 +2,29 @@
 ## Raw
 ########################################
 Demo\Domain\Model\Administrator\Administrator:
+  itemOperations:
+    get: ~
+    put: ~
+    delete: ~
+    post_send_administrator_activation_email:
+      method: 'POST'
+      path: '/administrators/{id}/send_activation_email'
+      route_name: 'post_send_administrator_activation_email'
+      requirements:
+        id: '\d+'
+      swagger_context:
+        summary: 'Sends activation email to an Administrator'
+        parameters:
+          - in: body # avoid api platform to inject default parameters
+        produces:
+          - 'application/json'
+        responses:
+          '200':
+            description: Verification email sent
+          '404':
+            description: Resource not found
+          '400':
+            description: Bad request
   attributes:
     access_control: '"ROLE_ADMIN" in roles'
     order:
