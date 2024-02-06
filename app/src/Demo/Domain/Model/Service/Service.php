@@ -9,6 +9,8 @@ class Service extends ServiceAbstract implements ServiceInterface
 {
     use ServiceTrait;
 
+    const BUILTIN_SERVICES = ['Recording', 'Voicemail', 'Queues'];
+
     /**
      * @codeCoverageIgnore
      * @return array<string, mixed>
@@ -22,7 +24,7 @@ class Service extends ServiceAbstract implements ServiceInterface
      * Get id
      * @codeCoverageIgnore
      */
-    public function getId(): int|string
+    public function getId(): null|int
     {
         return $this->id;
     }
