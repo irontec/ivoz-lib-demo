@@ -27,13 +27,8 @@ class SendActivationEmail
             throw new \DomainException("Resource not found", 404);
         }
 
-        try {
-            $this->sendActivationEmail->execute($administrator);
-            $response->setStatusCode(200);
-        } catch (\Exception $e) {
-            $response->setContent($e->getMessage());
-            $response->setStatusCode($e->getCode());
-        }
+        $this->sendActivationEmail->execute($administrator);
+        $response->setStatusCode(200);
 
         return $response;
     }

@@ -7,7 +7,7 @@ use Psr\Log\LoggerInterface;
 
 class SendActivationEmail implements AdministratorLifecycleEventHandlerInterface
 {
-    public const POST_PERSIST_PRIORITY = self::PRIORITY_NORMAL;
+    public const ON_COMMIT_PRIORITY = self::PRIORITY_NORMAL;
 
     public function __construct(
         private SendActivationEmailInterface $sendActivationEmail,
@@ -21,7 +21,7 @@ class SendActivationEmail implements AdministratorLifecycleEventHandlerInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            self::EVENT_POST_PERSIST => self::POST_PERSIST_PRIORITY
+            self::EVENT_ON_COMMIT => self::ON_COMMIT_PRIORITY
         ];
     }
 
@@ -40,13 +40,6 @@ class SendActivationEmail implements AdministratorLifecycleEventHandlerInterface
             return;
         }
 
-        $id = $administrator->getId();
-        if ($id === null) {
-            throw new \DomainException('Administrator not found');
-        }
-
-        $this->activationEmail->execute($administrator);
-
-        $this->logger->info("Administrator created with Id {$id}");
+        $this->sendActivationEmail->execute($administrator);
     }
 }

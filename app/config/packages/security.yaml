@@ -43,6 +43,10 @@ security:
             pattern:  ^/token/refresh
             stateless: true
 
+        activate_admin:
+            pattern: ^/activate_admin/\d+$
+            security: false
+
         api:
             pattern:   ^/.+
             stateless: true

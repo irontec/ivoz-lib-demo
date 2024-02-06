@@ -15,7 +15,7 @@ class AdministratorLifecycleServiceCollection implements LifecycleServiceCollect
 
     /** @var array<array-key, array> $bindedBaseServices */
     public static $bindedBaseServices = [
-        "post_persist" =>
+        "on_commit" =>
         [
             \Demo\Domain\Service\Administrator\SendActivationEmail::class => 200,
         ],

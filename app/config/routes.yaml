@@ -11,8 +11,17 @@ api_admin_login:
 post_send_administrator_activation_email:
     path: '/administrators/{id}/send_activation_email'
     methods: ['POST']
+    requirements:
+        id: '\d+'
     defaults:
         _controller: App\Controller\Administrator\SendActivationEmail
         _api_item_operation_name: 'send_activacion_email'
         _api_receive: false
 
+get_activate_administrator:
+    path: '/activate_admin/{id}'
+    methods: ['GET']
+    requirements:
+        id: '\d+'
+    defaults:
+        _controller: App\Controller\Administrator\Activate
