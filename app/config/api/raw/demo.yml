@@ -37,3 +37,7 @@ Demo\Domain\Model\Administrator\Administrator:
       ROLE_ADMIN:
         id:
           neq: 1
+
+Demo\Domain\Model\Service\Service: ~
+
+

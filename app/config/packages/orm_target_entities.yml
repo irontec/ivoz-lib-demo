@@ -9,3 +9,5 @@ doctrine:
         Ivoz\Core\Domain\Model\Changelog\Changelog
       Demo\Domain\Model\Timezone\TimezoneInterface:
         Demo\Domain\Model\Timezone\Timezone
+      Demo\Domain\Model\Service\ServiceInterface:
+        Demo\Domain\Model\Service\Service
