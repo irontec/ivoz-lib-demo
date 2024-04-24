@@ -9,10 +9,6 @@ services:
     Demo\Stub\:
         resource: '../src/Demo/Stub/*'
 
-    Doubles\Demo\Domain\Service\:
-        resource: '../src/Doubles/Demo/Domain/Service/*/*'
-        tags: [ { name: 'domain.service' } ]
-
     Ivoz\Api\Behat\Context\FeatureContext: ~
 
     App\Service\Behat\FeatureContext:
