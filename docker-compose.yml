@@ -46,6 +46,26 @@ services:
       network:
         ipv4_address: 10.189.4.23
 
+  client:
+    hostname: ${NAME}-client
+    command: /bin/bash /var/run/start.sh
+    container_name: ${NAME}-client
+    image: ${NAME}-client
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./web:/opt/web/client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - php-fpm
+    networks:
+      network:
+        ipv4_address: 10.189.4.25
+
 networks:
   network:
     driver: bridge
