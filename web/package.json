@@ -1,0 +1,81 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/demo",
+  "proxy": "https://10.189.4.23/",
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@irontec/ivoz-ui": "^1.4.2",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.1",
+    "@mui/styles": "^5.12.0",
+    "@mui/x-date-pickers": "^6.2.0",
+    "@vitejs/plugin-react": "^2.0.0",
+    "axios": "^1.6.0",
+    "easy-peasy": "^5.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
+    "typescript": "^4.1.2",
+    "vite": "^3.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "devDependencies": {
+    "@pactflow/pact-cypress-adapter": "https://github.com/mmadariaga/pact-cypress-adapter.git#1eb5ff0cf3db957b9bb5a24b6342f4c34b52290d",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/axios": "^0.14.0",
+    "@types/file-saver": "^2.0.3",
+    "@types/hoist-non-react-statics": "^3.3.1",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/query-string": "^6.3.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "cypress": "^10.8.0",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "hygen": "^6.2.11",
+    "i18next-parser": "^7.7.0",
+    "json-server": "^0.17.2",
+    "prettier": "^2.6.2",
+    "rollup-plugin-react-scoped-css": "^0.8.2",
+    "sass": "^1.59",
+    "vite-plugin-html": "^3.2.0"
+  },
+  "resolutions": {
+    "@types/react": "^18.0.0"
+  },
+  "scripts": {
+    "start": "bin/start",
+    "lint:check": "prettier --check src/**/*.tsx src/**/*.ts src/**/*.js",
+    "lint": "eslint --fix src --ext .js,.ts,.tsx",
+    "build": "bin/build",
+    "cy:run": "cypress run --browser electron",
+    "cy:open": "cypress open"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

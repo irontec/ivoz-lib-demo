@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Exit failure on first error
+set -e
+
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+[ -x $(which yarn) ] && YARN=$(which yarn) || YARN=$(which yarnpkg)
+
+pushd "${SCRIPT_DIR}"/../
+
+    /opt/irontec/demo/app/bin/console api:swagger:export > ./cypress/fixtures/apiSpec.json
+
+    if [ -n "$(git status -s ./cypress/fixtures)" ]; then
+        echo "API spec is not up to date."
+        git status -s ./cypress/fixtures
+        exit 1
+    fi
+
+    sed -i '/"deprecated":/d' ./cypress/fixtures/apiSpec.json
+    swagger-cli validate ./cypress/fixtures/apiSpec.json
+popd

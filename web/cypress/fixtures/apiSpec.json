@@ -1,0 +1,866 @@
+{
+    "swagger": "2.0",
+    "basePath": "/demo/api/",
+    "info": {
+        "title": "Demo",
+        "version": "1",
+        "description": "Rest API"
+    },
+    "paths": {
+        "/admin_login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "postAdminAuthenticate",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve JWT token",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "type": "string",
+                        "format": "password",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Valid credentials"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "description": "Bad credentials"
+                    }
+                }
+            }
+        },
+        "/token/refresh": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "operationId": "postTokenRefresh",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Retrieve JWT token",
+                "parameters": [
+                    {
+                        "name": "refresh_token",
+                        "in": "formData",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Valid credentials"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "401": {
+                        "description": "Bad credentials"
+                    }
+                }
+            }
+        },
+        "/administrators": {
+            "get": {
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "getAdministratorCollection",
+                "summary": "Retrieves the collection of Administrator resources.",
+                "responses": {
+                    "200": {
+                        "description": "Administrator collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Administrator-collection"
+                            }
+                        },
+                        "headers": {
+                            "X-Total-Items": {
+                                "type": "integer"
+                            },
+                            "X-Total-Pages": {
+                                "type": "integer"
+                            },
+                            "X-First-Page": {
+                                "type": "string"
+                            },
+                            "X-Next-Page": {
+                                "type": "string"
+                            },
+                            "X-Last-Page": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email[exact]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email[partial]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email[end]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email[neq]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email[start]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id[exact]",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "id[neq]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username[exact]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username[neq]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username[start]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username[partial]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "username[end]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "name": "_order[email]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "name": "_order[id]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "name": "_order[username]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_itemsPerPage",
+                        "in": "query",
+                        "required": false,
+                        "description": "The number of items per page",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Allows you to reduce the response to contain only the properties you need. If your desired property is nested, you can address it using nested arrays. Example: _properties[]={propertyName}&_properties[]={anotherPropertyName}&_properties[{nestedPropertyParent}][]={nestedProperty}",
+                        "name": "_properties[]",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false,
+                        "collectionFormat": "multi"
+                    }
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "postAdministratorCollection",
+                "summary": "Creates a Administrator resource.",
+                "responses": {
+                    "201": {
+                        "description": "Administrator resource created",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "administrator",
+                        "in": "body",
+                        "description": "The new Administrator resource",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator"
+                        }
+                    }
+                ]
+            }
+        },
+        "/administrators/{id}": {
+            "get": {
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "getAdministratorItem",
+                "summary": "Retrieves a Administrator resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Administrator resource response",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "putAdministratorItem",
+                "summary": "Replaces the Administrator resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "administrator",
+                        "in": "body",
+                        "description": "The updated Administrator resource",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Administrator resource updated",
+                        "schema": {
+                            "$ref": "#/definitions/Administrator"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "deleteAdministratorItem",
+                "summary": "Removes the Administrator resource.",
+                "responses": {
+                    "204": {
+                        "description": "Administrator resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_rmAlso[]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/administrators/{id}/send_activation_email": {
+            "post": {
+                "summary": "Sends activation email to an Administrator",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Verification email sent"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "post_send_administrator_activation_emailAdministratorItem",
+                "consumes": [
+                    "application/json",
+                    "application/ld+json",
+                    "text/csv",
+                    "application/xml",
+                    "text/xml",
+                    "text/html",
+                    "application/octet-stream",
+                    "image/png"
+                ]
+            }
+        },
+        "/services": {
+            "get": {
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "getServiceCollection",
+                "summary": "Retrieves the collection of Service resources.",
+                "responses": {
+                    "200": {
+                        "description": "Service collection response",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Service-collection"
+                            }
+                        },
+                        "headers": {
+                            "X-Total-Items": {
+                                "type": "integer"
+                            },
+                            "X-Total-Pages": {
+                                "type": "integer"
+                            },
+                            "X-First-Page": {
+                                "type": "string"
+                            },
+                            "X-Next-Page": {
+                                "type": "string"
+                            },
+                            "X-Last-Page": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id[exact]",
+                        "in": "query",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "id[neq]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "name": "_order[id]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_itemsPerPage",
+                        "in": "query",
+                        "required": false,
+                        "description": "The number of items per page",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "_page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Allows you to reduce the response to contain only the properties you need. If your desired property is nested, you can address it using nested arrays. Example: _properties[]={propertyName}&_properties[]={anotherPropertyName}&_properties[{nestedPropertyParent}][]={nestedProperty}",
+                        "name": "_properties[]",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": false,
+                        "collectionFormat": "multi"
+                    }
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "postServiceCollection",
+                "summary": "Creates a Service resource.",
+                "responses": {
+                    "201": {
+                        "description": "Service resource created",
+                        "schema": {
+                            "$ref": "#/definitions/Service"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "service",
+                        "in": "body",
+                        "description": "The new Service resource",
+                        "schema": {
+                            "$ref": "#/definitions/Service"
+                        }
+                    }
+                ]
+            }
+        },
+        "/services/{id}": {
+            "get": {
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "getServiceItem",
+                "summary": "Retrieves a Service resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service resource response",
+                        "schema": {
+                            "$ref": "#/definitions/Service-detailed"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "consumes": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/ld+json"
+                ],
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "putServiceItem",
+                "summary": "Replaces the Service resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "service",
+                        "in": "body",
+                        "description": "The updated Service resource",
+                        "schema": {
+                            "$ref": "#/definitions/Service"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service resource updated",
+                        "schema": {
+                            "$ref": "#/definitions/Service"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Domain"
+                ],
+                "operationId": "deleteServiceItem",
+                "summary": "Removes the Service resource.",
+                "responses": {
+                    "204": {
+                        "description": "Service resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "_rmAlso[]",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    },
+    "security": [
+        {
+            "bearer": []
+        }
+    ],
+    "securityDefinitions": {
+        "bearer": {
+            "type": "apiKey",
+            "in": "header",
+            "description": "Value for the Authorization header",
+            "name": "Authorization"
+        }
+    },
+    "definitions": {
+        "Administrator": {
+            "type": "object",
+            "required": [
+                "username",
+                "pass",
+                "email"
+            ],
+            "properties": {
+                "username": {
+                    "maxLength": 65,
+                    "description": "",
+                    "type": "string"
+                },
+                "pass": {
+                    "maxLength": 80,
+                    "description": "",
+                    "type": "string"
+                },
+                "email": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "name": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "lastname": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Administrator-collection": {
+            "type": "object",
+            "required": [
+                "username",
+                "email"
+            ],
+            "properties": {
+                "username": {
+                    "maxLength": 65,
+                    "description": "",
+                    "type": "string"
+                },
+                "email": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Administrator-detailed": {
+            "type": "object",
+            "required": [
+                "username",
+                "pass",
+                "email"
+            ],
+            "properties": {
+                "username": {
+                    "maxLength": 65,
+                    "description": "",
+                    "type": "string"
+                },
+                "pass": {
+                    "maxLength": 80,
+                    "description": "",
+                    "type": "string"
+                },
+                "email": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "name": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "lastname": {
+                    "maxLength": 100,
+                    "description": "",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Service": {
+            "type": "object",
+            "required": [
+                "iden"
+            ],
+            "properties": {
+                "iden": {
+                    "maxLength": 50,
+                    "description": "",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Service-collection": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        },
+        "Service-detailed": {
+            "type": "object",
+            "required": [
+                "iden"
+            ],
+            "properties": {
+                "iden": {
+                    "maxLength": 50,
+                    "description": "",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "",
+                    "type": "integer",
+                    "readOnly": true
+                }
+            }
+        }
+    }
+}

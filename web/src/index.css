@@ -1,0 +1,12 @@
+@import "@irontec/ivoz-ui/css/main.css";
+
+:root {
+  /** COLORS **/
+  --color-primary: #ed5151;
+  --color-primary-rgb: rgb(237, 81, 81);
+  --color-primary-tonal: hsl(0, 81%, 95%);
+}
+
+#root div.app-wrapper {
+  background-image: url('/demo/assets/img/bg-noise.png');
+}
