@@ -17,7 +17,7 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
     networks:
       network:
-        ipv4_address: 10.189.4.22
+        ipv4_address: 10.189.20.22
 
   php-fpm:
     hostname: ${NAME}-fpm
@@ -44,7 +44,7 @@ services:
       - db
     networks:
       network:
-        ipv4_address: 10.189.4.23
+        ipv4_address: 10.189.20.23
 
 networks:
   network:
@@ -52,7 +52,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 10.189.4.0/24
+        - subnet: 10.189.20.0/24
 
 volumes:
   dbdata:
