@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3dcd8890966f8e38db84a4d34e83e06",
+    "content-hash": "678f88d97b7ec9615af76f46edf14a39",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2520,16 +2520,16 @@
         },
         {
             "name": "irontec/ivoz-core",
-            "version": "4.18.0",
+            "version": "dev-CDD-17-mark-entitytools-methods-as-internal",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irontec/ivoz-core.git",
-                "reference": "f39310b119f7924c5e9f098aea4252e2bd806086"
+                "reference": "0222df6978ecfeef5d5dbd55d5dfd9416769991d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irontec/ivoz-core/zipball/f39310b119f7924c5e9f098aea4252e2bd806086",
-                "reference": "f39310b119f7924c5e9f098aea4252e2bd806086",
+                "url": "https://api.github.com/repos/irontec/ivoz-core/zipball/0222df6978ecfeef5d5dbd55d5dfd9416769991d",
+                "reference": "0222df6978ecfeef5d5dbd55d5dfd9416769991d",
                 "shasum": ""
             },
             "require": {
@@ -2598,9 +2598,9 @@
             "description": "Core library for ivozprovider",
             "support": {
                 "issues": "https://github.com/irontec/ivoz-core/issues",
-                "source": "https://github.com/irontec/ivoz-core/tree/4.18.0"
+                "source": "https://github.com/irontec/ivoz-core/tree/CDD-17-mark-entitytools-methods-as-internal"
             },
-            "time": "2023-11-30T20:11:45+00:00"
+            "time": "2024-02-14T11:23:48+00:00"
         },
         {
             "name": "irontec/ivoz-core-bundle",
@@ -12524,9 +12524,18 @@
             "time": "2021-03-09T10:59:23+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "irontec/ivoz-core",
+            "version": "dev-CDD-17-mark-entitytools-methods-as-internal",
+            "alias": "4.18",
+            "alias_normalized": "4.18.0.0"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "irontec/ivoz-core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
