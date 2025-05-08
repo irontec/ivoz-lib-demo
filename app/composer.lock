@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3dcd8890966f8e38db84a4d34e83e06",
+    "content-hash": "b4a10db7b2e7c6b771d7ccee58d07c92",
     "packages": [
         {
             "name": "api-platform/core",
@@ -2656,16 +2656,16 @@
         },
         {
             "name": "irontec/ivoz-dev-tools",
-            "version": "5.12.1",
+            "version": "dev-CDD-15-wrong-regexp-changelog",
             "source": {
                 "type": "git",
                 "url": "https://github.com/irontec/ivoz-dev-tools.git",
-                "reference": "6c89cc256f14ae80ed5b40c5e4c84916c5f5f8a6"
+                "reference": "e9f846be0e3edace7456be9aa46852ffe3adcdb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/irontec/ivoz-dev-tools/zipball/6c89cc256f14ae80ed5b40c5e4c84916c5f5f8a6",
-                "reference": "6c89cc256f14ae80ed5b40c5e4c84916c5f5f8a6",
+                "url": "https://api.github.com/repos/irontec/ivoz-dev-tools/zipball/e9f846be0e3edace7456be9aa46852ffe3adcdb5",
+                "reference": "e9f846be0e3edace7456be9aa46852ffe3adcdb5",
                 "shasum": ""
             },
             "require": {
@@ -2706,9 +2706,9 @@
             "description": "DevTools for ivozprovider",
             "support": {
                 "issues": "https://github.com/irontec/ivoz-dev-tools/issues",
-                "source": "https://github.com/irontec/ivoz-dev-tools/tree/5.12.1"
+                "source": "https://github.com/irontec/ivoz-dev-tools/tree/CDD-15-wrong-regexp-changelog"
             },
-            "time": "2024-01-23T12:25:26+00:00"
+            "time": "2024-02-12T10:12:26+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -12526,7 +12526,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "irontec/ivoz-dev-tools": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
